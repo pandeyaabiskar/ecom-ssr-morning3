@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require('cors');
 const productRouter = require('./routes/productRoutes')
 const connectDatabase = require('./database/connection')
+const hbs = require('hbs');
 const PORT = 3000;
 
 const app = express();
@@ -17,7 +18,7 @@ app.use(express.static(__dirname + '/public'))
 
 //Setup view engine
 app.set('view engine', 'hbs');
-
+hbs.registerPartials(__dirname + '/views/partials');
 //Use routes
 app.use("/products", productRouter);
 
