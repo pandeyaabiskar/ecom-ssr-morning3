@@ -5,9 +5,9 @@ const returnAllProducts = async (req, res) => {
   const { category } = req.query;
   if (category) {
     const filteredProducts = await ProductModel.find({category});
-    res.json(filteredProducts);
+    res.render('index', {data : filteredProducts})
   } else {
-    res.json(productData);
+    res.render('index', {data: productData})
   }
 };
 
@@ -19,7 +19,8 @@ const returnSingleProduct = async (req, res) => {
   const selectedProduct = await ProductModel.find({_id : productID});
 
   if (selectedProduct) {
-    res.json(selectedProduct);
+    res.render('details')
+    // res.json(selectedProduct);
   } else {
     res.send("Index doesn't exist");
   }

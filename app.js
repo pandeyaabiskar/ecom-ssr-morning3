@@ -12,9 +12,14 @@ connectDatabase()
 app.use( cors() );
 //Required to access json data in post function
 app.use(express.json());
+//Serve static files
+app.use(express.static(__dirname + '/public'))
+
+//Setup view engine
+app.set('view engine', 'hbs');
 
 //Use routes
-app.use("/api/products", productRouter);
+app.use("/products", productRouter);
 
 app.listen(PORT, () => {
   console.log(`Server started at port ${PORT}`);
